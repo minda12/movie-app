@@ -8,13 +8,23 @@ function App() {
 
     const [movies,setmovies] =useState([])
     const [isLoading,setisLoading] =useState(false)
+    const [error,seterror] =useState(null)
 
       const  fetchmovieHandler = async () => {
        setisLoading(true)
+       seterror(null)
        try {
 
-        const response = await fetch('https://swapi.dev/api/films/')
+        const response = await fetch('https://swapi.dev/api/fims/')
+        console.log(response)
+        if(!response.ok)
+        {
+          throw new Error  ('Something Went Wrong Retrying....')
+         
+        }
         const data = await response.json()
+
+       
         const transformed = data.results.map(movie=>{
 
           return {
@@ -31,13 +41,15 @@ function App() {
         setisLoading(false)
        } catch (error) {
         console.error('Error fetching movies:', error);
+        seterror(error.message)
+        setisLoading(false)
+        
+        setTimeout(() => {
+          fetchmovieHandler()
+      }, 5000);
        }
 
-
-
-
-
-
+        
       }
     
 
@@ -48,8 +60,10 @@ function App() {
       </section>
       <section>
        {!isLoading && movies.length>0 && <MoviesList movies={movies} />}
-       {!isLoading  &&   movies.length===0 && <p> Click fetch movies  </p>}
-       {isLoading  &&  <p>Loding Please Wait......</p>}
+       {!isLoading  &&   movies.length===0  && !error && <p> Click fetch movies  </p>}
+       {!isLoading  && error && <div><p>{error}</p><button onClick={()=>seterror(null)}>Cancel</button></div>  }
+       {isLoading  &&  <p>Loading Please Wait......</p>}
+     
       </section>
     </React.Fragment>
   );
