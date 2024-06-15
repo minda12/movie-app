@@ -1,0 +1,49 @@
+
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55vh;
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 40rem;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 2rem;
+    border-radius: 12px;
+
+
+  }
+  INPUT{
+    padding: 4px;
+  }
+
+  LABEL{
+    text-align: start;
+  }
+  .op-text{
+    max-height: 50px;
+  }
+  
+  button {
+    font: inherit;
+    cursor: pointer;
+    background: #230052;
+    border: 1px solid #230052;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 20px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:hover,
+  button:active {
+    background-color: #460897;
+    border-color: #460897;
+  }
+  

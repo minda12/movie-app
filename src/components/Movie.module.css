@@ -8,6 +8,11 @@
   color: white;
 }
 
+.movie button#remove{
+   
+  background-color: #ff0c0c !important;
+}
+
 .movie h2 {
   font-size: 2rem;
   color: #f7e702;
